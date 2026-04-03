@@ -18,10 +18,13 @@ class TurtlebotNavNode(Node):
 
         self.waypoints = np.asarray([
             [1.25, -1.26],
-            [1.92, 0.04],
+            [1.72, 0.1],
+            [1.92, 0.1],
+            [2.02, 0.1],
             [2.92, -1.42],
             [2.53, 2.14],
-            [0.45, 2.20],
+            [0.20, 2.20],
+            [0.20, 1.25],
             [1.28, 1.25],
         ])
         self.current_waypoint_idx = 0
@@ -35,7 +38,7 @@ class TurtlebotNavNode(Node):
         self.scan_msg = None
         self.turn_preference = -1.0
 
-        self.goal_tolerance = 0.15
+        self.goal_tolerance = 0.08
         self.max_linear_speed = 0.16
         self.max_angular_speed = 1.0
         self.turn_only_threshold = 0.9
@@ -104,7 +107,7 @@ class TurtlebotNavNode(Node):
         goal_vector_body = self.rotate_world_to_body(goal_vector_world)
         attraction = self.attraction_gain * goal_vector_body / max(distance, 1e-6)
         repulsion = self.compute_repulsion_vector(self.scan_msg)
-        total_vector = attraction + repulsion
+        total_vector = attraction + 0.6 * repulsion
 
         heading_error = self.compute_heading_error(total_vector, goal_vector_body)
         front_distance = self.get_front_distance(self.scan_msg)

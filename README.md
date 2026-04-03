@@ -1,6 +1,7 @@
 # Turtlebot Navigation
 
 This [repository](https://github.com/yingruijie/turtlebot_nav.git) is for Question 1: Turtlebot Navigation, DASE 7503 Individual Assignment.
+The python node is [here](./turtlebot_nav/turtlebot_nav.py).
 
 
 ## Environment Install
